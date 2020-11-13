@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
      */
 
     private void refreshWeather(final String cityCode) {
+        this.livesList.clear();
         new Thread(new Runnable(){
             @Override
             public void run() {
@@ -217,8 +218,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 JsonToLives jtl = new JsonToLives(json);
                 Lives live = jtl.getLive();
-                livesList.add(live);
-//                livesList.sort();
+                handleAdd(live);
                 livesAdapter = new LivesAdapter(MainActivity.this, R.layout.item, livesList);
                 listView.setAdapter(livesAdapter);
             }
@@ -226,5 +226,19 @@ public class MainActivity extends AppCompatActivity {
 
 //        JsonToCast jtc = new JsonToCast(json);
 //        Forecasts forecasts = jtc.getCast();
+    }
+
+    private void handleAdd(Lives lives) {
+        boolean flag = true;
+
+        for (Lives item: this.livesList) {
+            if (item.getAdcode().equals(lives.getAdcode())) {
+                flag = false;
+            }
+        }
+
+        if (flag) {
+            this.livesList.add(lives);
+        }
     }
 }

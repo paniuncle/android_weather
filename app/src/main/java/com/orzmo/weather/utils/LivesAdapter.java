@@ -34,6 +34,7 @@ public class LivesAdapter extends ArrayAdapter {
         TextView winddirection = view.findViewById(R.id.home_list_winddirection);
         TextView humidty = view.findViewById(R.id.home_list_humidity);
         TextView windpower = view.findViewById(R.id.home_list_windpower);
+        TextView report = view.findViewById(R.id.home_list_reporttime);
 
         province.setText(lives.getProvince());
         city.setText(lives.getCity());
@@ -42,6 +43,7 @@ public class LivesAdapter extends ArrayAdapter {
         winddirection.setText("风向：" + lives.getWinddirection());
         humidty.setText("湿度：" + lives.getHumidity());
         windpower.setText("风速：" + lives.getWindpower());
+        report.setText("上次更新时间：" + lives.getReporttime());
         return view;
     }
 }
